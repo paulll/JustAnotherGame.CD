@@ -1,0 +1,51 @@
+.panel {
+    position: fixed;
+    right: 0;
+    top: -310px;
+    height: 310px;
+    width: 200px;
+    background: #1C1C1C;
+    box-sizing: border-box;
+    padding: 20px;
+    color: white;
+    font-family: Ubuntu, sans-serif;
+}
+
+.panel:hover {
+    top: 0%;
+}
+
+.menu:hover ~ .panel {
+    top: 0%;
+}
+
+.menu {
+    background: #1C1C1C;
+    opacity: .7;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    padding: 5px 0px;
+    text-align: center;
+    color: white;
+    font-family: Ubuntu, sans-serif;
+}
+
+.menu:hover {
+    top: 310px;
+}
+
+.panel:hover ~ .menu {
+    top: 310px;
+}
+
+.menu, .panel {
+    -webkit-transition: all ease 700ms 150ms;
+    -moz-transform: all ease 700ms 150ms;
+    -ms-transform: all ease 700ms 150ms;
+    -o-transform: all ease 700ms 150ms;
+    transform: all ease 700ms 150ms;
+    z-index: 10000;
+}
+

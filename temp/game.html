@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map</title>
+    <meta charset="UTF-8">
+    <link href="game_style.css" rel="stylesheet">
+    <script src="pathfinding.js" defer="defer"></script>
+    <script src="game.js" defer="defer"></script>
+    <script src="util.js" defer="defer"></script>
+    <script src="path.js" defer="defer"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+</head>
+<body>
+<canvas id="map_merge"></canvas>
+<div id="debug">
+    <div class="dbg-line">
+        <span class="dbg-name">Enemies</span>
+        <span class="dbg-value dbg-normal">0</span><span class="dbg-limit">30</span>
+    </div>
+    <div class="dbg-line">
+        <span class="dbg-name">Towers</span>
+        <span class="dbg-value dbg-normal">0</span><span class="dbg-limit">120</span>
+    </div>
+    <div class="dbg-line">
+        <span class="dbg-name">FPS</span>
+        <span class="dbg-value dbg-so-so">unknown</span><span class="dbg-limit">60</span>
+    </div>
+    <div class="dbg-line">
+        <span class="dbg-name">EasterEggsFound</span>
+        <span class="dbg-value dbg-bad">0</span><span class="dbg-limit">0</span>
+    </div>
+</div>
+</body>
+</html>
