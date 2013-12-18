@@ -1,10 +1,11 @@
 function Enemy() {
     // main properties
 
-    this.speed;
-    this.damageSpeed;
+    this.speed; // chunks per second
+    this.damageSpeed; // attacks per second
     this.damage;
     this.hp;
+    this.cost;
 
     // special powers
     // TODO: realise special powers
@@ -78,11 +79,12 @@ function Enemy() {
     this.remove = function () {
         this.element.remove();
         entities.enemies.splice(entities.enemies.indexOf(this), 1);
+        game.money = game.money + this.cost;
     }
     this.explode = function () {
         // animation
     }
-    this.place = function () {
+    this.spawn = function () {
         this.element = draw.image(this.texture, this.posX * 32, this.posY * 32, 32, 32);
     }
 }
