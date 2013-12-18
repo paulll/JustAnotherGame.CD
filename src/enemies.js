@@ -18,18 +18,24 @@ function Enemy() {
 
     // rendering stuff
 
-    this.posX;
-    this.posY;
+    this.posX; // chunks,
+    this.posY; // not pixels
     this.texture;
 
     this.element;
 
-    this.move = function () {
-
+    this.move = function (offset) {
+        //
     }
-
+    this.attack = function (offset) {
+        //
+    }
+    this.fire = function () {
+        //
+    }
     this.target = function () {
-
+        var targets = towersInRange([this.posX, this.posY]);
+        this.currentTarget = targets.pop(); // TODO: add sorting algorhytms
     }
     this.hurt = function (howMuch) {
         this.hp = this.hp - (howMuch - this.armorA) * this.armorC;
@@ -43,10 +49,10 @@ function Enemy() {
         entities.enemies.splice(entities.enemies.indexOf(this), 1);
     }
     this.explode = function () {
-
+        // animation
     }
     this.place = function () {
-        this.element = draw.image(this.texture, this.posX, this.posY, 32, 32);
+        this.element = draw.image(this.texture, this.posX * 32, this.posY * 32, 32, 32);
     }
 }
 
