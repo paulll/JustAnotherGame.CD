@@ -58,15 +58,13 @@ function Enemy() {
 
 var enemiesController = {
     move: function (offset) {
-
+        entities.enemies.forEach(function (enemy) {
+            enemy.move(offset);
+        });
     },
     attack: function (offset) {
-
-    },
-    recalcRanges: function () {
-
-    },
-    target: function () {
-
+        entities.enemies.forEach(function (enemy) {
+            enemy.attack(offset);
+        });
     }
 }
