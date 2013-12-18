@@ -45,6 +45,7 @@ function Tower() {
     this.place = function () {
         this.element = draw.image(this.texture, this.posX * 32, this.posY * 32, this.width * 32, this.height * 32);
         entities.towers.push(this);
+        entities.towersMap[this.posX][this.posY] = this;
     };
     this.attack = function (time) {
         lastShot = lastShot + time;
@@ -63,10 +64,9 @@ function Tower() {
         if (!this.range) {
             this.range = range(this.pos, this.radius);
         }
-        this.range.forEach(function (v) {
-            var enemy;
-            if (enemy = entities.enemiesMap[v.pos[0][v.pos[1]]]) {
-                targets.push(tower);
+        entities.enemies.forEach(function (enemy) {
+            if (this.range.indexOf([enemy.posX, enemy.posY]) !== -1) {
+                targets.push(enemy);
             }
         });
         this.currentTarget = targets.pop(); // TODO: add sorting algorhytms
@@ -89,6 +89,7 @@ function Tower() {
     this.remove = function () {
         this.element.remove();
         entities.towers.splice(entities.towers.indexOf(this), 1);
+        entities.towersMap[this.posX][this.posY] = undefined;
     }
 
 

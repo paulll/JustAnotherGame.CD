@@ -1,10 +1,13 @@
 // loading map
 
 var map = JSON.parse(localStorage.getItem('map'));
+map.width = map.length;
+map.height = map[0].length;
 
 // loading path finder
 
-var pathGrid = new PF.Grid(map[0].length, map.length, map);
+var pathGrid = new PF.Grid(map.width, map.height, map);
+
 var finder = new PF.BiBestFirstFinder({
     allowDiagonal: false,
     dontCrossCorners: true
@@ -14,7 +17,7 @@ var finder = new PF.BiBestFirstFinder({
 
 var c = document.getElementById("map_merge");
 var ctx = c.getContext("2d");
-var draw = Raphael(0, 0, map[0].length * 32, map.length * 32);
+var draw = Raphael(0, 0, map.width * 32, map.height * 32);
 
 // stupid code
 Object.prototype.forEach = Array.prototype.forEach;
@@ -48,11 +51,11 @@ function loadTextures(callback) {
 // pre-rendering map
 
 function getMapBackground(map, callback) {
-    c.width = map[0].length * 32;
-    c.height = map.length * 32;
-    map.forEach(function (line, i) {
-        line.forEach(function (node, ii) {
-            ctx.drawImage(textures[node], ii * 32, i * 32, 32, 32);
+    c.width = map.width * 32;
+    c.height = map.height * 32;
+    map.forEach(function (line, x) {
+        line.forEach(function (node, y) {
+            ctx.drawImage(textures[node], x * 32, y * 32, 32, 32);
         });
     });
     callback(c.toDataURL("image/png"));
@@ -61,7 +64,7 @@ function getMapBackground(map, callback) {
 // rendering map
 
 function drawMap(bgimg) {
-    var bg = draw.image(bgimg, 0, 0, map[0].length * 32, map.length * 32);
+    var bg = draw.image(bgimg, 0, 0, map.width * 32, map.height * 32);
 }
 
 // drag & drop map
@@ -101,8 +104,8 @@ var game = {
 var entities = {
     towers: [],
     enemies: [],
-    towersMap: matrix(map[0].length, map.length),
-    enemiesMap: matrix(map[0].length, map.length)
+    towersMap: matrix(map.width, map.height),
+    enemiesMap: matrix(map.width, map.height)
 }
 
 

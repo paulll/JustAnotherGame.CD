@@ -42,6 +42,9 @@ function Enemy() {
         this.element.remove();
         entities.enemies.splice(entities.enemies.indexOf(this), 1);
     }
+    this.explode = function () {
+
+    }
     this.place = function () {
         this.element = draw.image(this.texture, this.posX, this.posY, 32, 32);
     }
