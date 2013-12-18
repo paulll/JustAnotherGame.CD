@@ -23,7 +23,7 @@ function Tower() {
 
     // timing
 
-    var lastShot; // milliseconds
+    var lastShot = 0; // milliseconds
 
     // vars
 
@@ -56,7 +56,11 @@ function Tower() {
     }
     this.fire = function () {
         if (!this.bullet) {
-            //
+            this.currentTarget.hurt(this.damage);
+            // animate
+        } else {
+            this.currentTarget.hurt(this.damage);
+            // animate (another type of animation)
         }
     }
     this.target = function () {
