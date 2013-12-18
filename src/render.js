@@ -1,5 +1,20 @@
-var FPS = 60;
+animate = {
+    enemyMove: function (enemy, target) {
 
-setInterval(function () {
-    // render;
-}, 1000 / FPS);
+    },
+    enemyAttack: function (enemy, target) {
+
+    },
+    towerTarget: function (tower, target) {
+
+    },
+    towerAttackLaser: function (tower, target) {
+
+    },
+    towerAttack: function (tower, target) {
+
+    },
+    explode: function (target) {
+
+    }
+}
