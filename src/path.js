@@ -6,7 +6,7 @@ function way(start, last, target) {
         if ([target] === last) {
             return start;
         }
-        if (last[last.length - 1] === target[target.length - 1].pos) {
+        if (last[last.length - 1] === [target[target.length - 1].posX, target[target.length - 1].posY]) {
             return last;
         } else {
             return finder.findPath(start[0], start[1], target[target.length - 1].pos[0], target[target.length - 1].pos[1]);
