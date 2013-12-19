@@ -6,10 +6,10 @@ function way(start, last, target) {
         if ([target] === last) {
             return start;
         }
-        if (last[last.length - 1] === [target[target.length - 1].posX, target[target.length - 1].posY]) {
+        if (last[last.length - 1] === [target.posX, target.posY]) {
             return last;
         } else {
-            return finder.findPath(start[0], start[1], target[target.length - 1].pos[0], target[target.length - 1].pos[1]);
+            return finder.findPath(start[0], start[1], target.posX, target.posY);
         }
     }
     var first_target = [Math.floor(map.width / 2), Math.floor(map.height / 2)];
