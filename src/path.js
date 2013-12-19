@@ -3,6 +3,9 @@ findEnemies = {
 }
 function way(start, last, target) {
     if (target) {
+        if ([target] === last) {
+            return start;
+        }
         if (last[last.length - 1] === target[target.length - 1].pos) {
             return last;
         } else {
