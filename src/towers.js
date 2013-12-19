@@ -111,3 +111,4 @@ var towersController = {
         });
     }
 }
+logic_loop();

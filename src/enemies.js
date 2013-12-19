@@ -1,11 +1,11 @@
 function Enemy() {
     // main properties
 
-    this.speed; // chunks per second
-    this.damageSpeed; // attacks per second
-    this.damage;
-    this.hp;
-    this.cost;
+    this.speed = 1; // chunks per second
+    this.damageSpeed = 0.5; // attacks per second
+    this.damage = 1;
+    this.hp = 4;
+    this.cost = 1;
 
     // special powers
     // TODO: realise special powers
@@ -15,14 +15,14 @@ function Enemy() {
 
     this.canFly;
 
-    this.armorA;
-    this.armorC;
+    this.armorA = 0;
+    this.armorC = 1;
 
     // rendering stuff
 
-    this.posX; // chunks,
-    this.posY; // not pixels
-    this.texture;
+    this.posX = 0 // chunks,
+    this.posY = 0// not pixels
+    this.texture = 'http://x.cloudx.cx/temp/textures/mountain.png';
 
     this.element;
 

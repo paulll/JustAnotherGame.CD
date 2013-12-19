@@ -126,6 +126,7 @@ function logic_loop(offset) {
     // to prevent lags
 
     if (!computed) {
+        computed = true;
         return false;
     }
 
@@ -151,5 +152,3 @@ function logic_loop(offset) {
 }
 
 // start game logic loop
-
-logic_loop();
