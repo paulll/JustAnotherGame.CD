@@ -111,4 +111,5 @@ var towersController = {
         });
     }
 }
-logic_loop();
+
+setInterval(logic_loop, 60);

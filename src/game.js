@@ -26,7 +26,7 @@ Object.prototype.forEach = Array.prototype.forEach;
 // init variables
 
 var textures = {}; // Image objects
-var computed = true;  // To prevent lags in game logic loop
+var lastTick = new Date.getTime();
 
 // loading textures
 
@@ -121,23 +121,15 @@ loadTextures(function () {
 
 // creating logic loop
 
-function logic_loop(offset) {
+function logic_loop() {
 
-    // to prevent lags
-
-    if (!computed) {
-        computed = true;
-        return false;
-    }
-
-    computed = false;
+    var offset = new Date.getTime() - lastTick;
 
     // manage enemies
 
     (function () {
         enemiesController.move(offset);
         enemiesController.attack(offset);
-        logic_loop();
     })();
 
     // manage towers
@@ -145,10 +137,7 @@ function logic_loop(offset) {
     (function () {
         towersController.target();
         towersController.attack(offset);
-        logic_loop();
     })();
 
     return true;
 }
-
-// start game logic loop
