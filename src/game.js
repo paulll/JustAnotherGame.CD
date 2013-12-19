@@ -26,7 +26,7 @@ Object.prototype.forEach = Array.prototype.forEach;
 // init variables
 
 var textures = {}; // Image objects
-var lastTick = new Date.getTime();
+var lastTick = (new Date).getTime();
 
 // loading textures
 
@@ -123,7 +123,7 @@ loadTextures(function () {
 
 function logic_loop() {
 
-    var offset = new Date.getTime() - lastTick;
+    var offset = (new Date).getTime() - lastTick;
 
     // manage enemies
 
