@@ -3,7 +3,7 @@ findEnemies = {
 }
 function way(start, last, target) {
     if (target) {
-        if ([target] === last) {
+        if ([target.posX, target.posY] === last) {
             return start;
         }
         if (last[last.length - 1] === [target.posX, target.posY]) {
@@ -13,7 +13,7 @@ function way(start, last, target) {
         }
     }
     var first_target = [Math.floor(map.width / 2), Math.floor(map.height / 2)];
-    if (last[last.length - 1] == first_target) {
+    if (last[last.length - 1] === first_target) {
         return last;
     }
     return finder.findPath(start[0], start[1], Math.floor(map.width / 2), Math.floor(map.height / 2), pathGrid);
