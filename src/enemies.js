@@ -49,6 +49,8 @@ function Enemy() {
     this.go = function () {
         lastWay = way([this.posX, this.posY], lastWay, this.currentTarget);
 
+        lastWay.shift(); // shift current position
+
         var pos = lastWay.shift();
 
         this.posX = pos[0];
