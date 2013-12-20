@@ -31,6 +31,10 @@ function Enemy() {
     var lastShot = 0;
     var lastMove = 0;
 
+    // AI
+
+    this.currentTarget = false;
+
     // path finding
 
     var lastWay = [];
@@ -67,7 +71,7 @@ function Enemy() {
     }
     this.target = function () {
         var targets = towersInRange([this.posX, this.posY]);
-        this.currentTarget = targets.pop(); // TODO: add sorting algorhytms
+        this.currentTarget = (this.currentTarget = targets.pop()) ? this.currentTarget : false; // TODO: add sorting algorhytms
     }
     this.hurt = function (howMuch) {
         this.hp = this.hp - (howMuch - this.armorA) * this.armorC;
