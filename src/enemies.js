@@ -37,17 +37,16 @@ function Enemy() {
 
     // path finding
 
-    var lastWay = [];
+    this.lastWay = [];
 
     this.go = function () {
 
-        if (Math.abs(this.currentTarget.posX - this.posX) === 1 || Math.abs(this.currentTarget.posY - this.posY) === 1) {
+        if (this.currentTarget && (Math.abs(this.currentTarget.posX - this.posX) === 1 || Math.abs(this.currentTarget.posY - this.posY) === 1)) {
             moveTimeout = setTimeout(this.go, 1000 / this.speed);
             return false;
         }
 
-        lastWay = way([this.posX, this.posY], lastWay, this.currentTarget);
-        lastWay.shift(); // shift current position
+        this.lastWay = way([this.posX, this.posY], this.lastWay, this.currentTarget);
 
         var pos = lastWay.shift();
 
