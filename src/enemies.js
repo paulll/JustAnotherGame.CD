@@ -28,8 +28,8 @@ function Enemy() {
 
     // timing
 
-    var lastShot = 0;
-    var lastMove = 0;
+    var shotTimeout;
+    var moveTimeout;
 
     // AI
 
@@ -39,37 +39,40 @@ function Enemy() {
 
     var lastWay = [];
 
-    this.move = function (offset) {
-        lastMove = lastMove + offset;
-        if (lastMove >= 1000 / this.speed) {
-            lastMove = lastMove - 1000 / this.speed;
-            this.go();
-        }
-    }
     this.go = function () {
-        lastWay = way([this.posX, this.posY], lastWay, this.currentTarget);
 
+        if (Math.abs(this.currentTarget.posX - this.posX) === 1 || Math.abs(this.currentTarget.posY - this.posY) === 1) {
+            moveTimeout = setTimeout(this.go, 1000 / this.speed);
+            return false;
+        }
+
+        lastWay = way([this.posX, this.posY], lastWay, this.currentTarget);
         lastWay.shift(); // shift current position
 
         var pos = lastWay.shift();
 
+        console.log('i\'m', pos);
+
         this.posX = pos[0];
         this.posY = pos[1];
 
-        // animate
-    }
-    this.attack = function (offset) {
-        lastShot = lastShot + offset;
-        if (lastShot >= 1000 / this.damageSpeed) {
-            lastShot = lastShot - 1000 / this.damageSpeed;
-            this.fire();
-        }
+        var self = this;
+
+        this.element.animate({
+            x: pos[0] * 32,
+            y: pos[1] * 32
+        }, 1000 / this.speed, 'linear', function () {
+            self.go();
+        });
     }
     this.fire = function () {
-        if (Math.abs(this.currentTarget.posX - this.posX) === 1 || Math.abs(this.currentTarget.posY - this.posY) === 1) {
-            this.currentTarget.hurt(this.damage);
-            // animation
+        if (this.currentTarget) {
+            if (Math.abs(this.currentTarget.posX - this.posX) === 1 || Math.abs(this.currentTarget.posY - this.posY) === 1) {
+                this.currentTarget.hurt(this.damage);
+                // animation
+            }
         }
+        setTimeout(this.fire, this.damageSpeed);
     }
     this.target = function () {
         var targets = towersInRange([this.posX, this.posY]);

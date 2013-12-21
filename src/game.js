@@ -8,9 +8,8 @@ map.height = map[0].length;
 
 var pathGrid = new PF.Grid(map.width, map.height, map);
 
-var finder = new PF.BiBestFirstFinder({
-    allowDiagonal: false,
-    dontCrossCorners: true
+var finder = new PF.BestFirstFinder({
+    allowDiagonal: false
 });
 
 // preparing canvas
@@ -18,9 +17,6 @@ var finder = new PF.BiBestFirstFinder({
 var c = document.getElementById("map_merge");
 var ctx = c.getContext("2d");
 var draw = Raphael(0, 0, map.width * 32, map.height * 32);
-
-// stupid code
-Object.prototype.forEach = Array.prototype.forEach;
 
 
 // init variables
@@ -55,7 +51,7 @@ function getMapBackground(map, callback) {
     c.height = map.height * 32;
     map.forEach(function (line, x) {
         line.forEach(function (node, y) {
-            ctx.drawImage(textures[node], x * 32, y * 32, 32, 32);
+            ctx.drawImage(textures[node], y * 32, x * 32, 32, 32);
         });
     });
     callback(c.toDataURL("image/png"));
